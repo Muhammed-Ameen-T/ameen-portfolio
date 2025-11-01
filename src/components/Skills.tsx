@@ -1,53 +1,13 @@
+import { skillCategories } from '@/Data/Skills';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import {
-  Code2,
-  Database,
-  Layout,
-  Server,
-  Cloud,
-  Boxes,
-  Brain,
-  Zap,
-} from 'lucide-react';
 
 const Skills = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const skillCategories = [
-    {
-      title: 'Back-End',
-      icon: Server,
-      skills: ['Node.js', 'Express.js', 'TypeScript', 'JavaScript', 'RESTful API'],
-    },
-    {
-      title: 'Front-End',
-      icon: Layout,
-      skills: ['React.js', 'Next.js', 'Redux Toolkit', 'Tailwind', 'Bootstrap', 'HTML', 'CSS', 'ShadCN'],
-    },
-    {
-      title: 'Databases & ORM',
-      icon: Database,
-      skills: ['MongoDB', 'PostgreSQL', 'Mongoose', 'Redis', 'Firebase'],
-    },
-    {
-      title: 'Cloud & Deployment',
-      icon: Cloud,
-      skills: ['AWS EC2', 'Nginx', 'Vercel', 'Docker'],
-    },
-    {
-      title: 'Architecture',
-      icon: Boxes,
-      skills: ['Clean Architecture', 'MVC Architecture', 'Repository Pattern', 'SOLID Principles'],
-    },
-    {
-      title: 'Additional Skills',
-      icon: Brain,
-      skills: ['Problem-solving (LeetCode)', 'Quick Learning', 'Adaptability', 'DSA'],
-    },
-  ];
+  
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -93,33 +53,81 @@ const Skills = () => {
           animate={isInView ? 'visible' : 'hidden'}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {skillCategories.map((category, index) => {
-            const Icon = category.icon;
-            return (
-              <motion.div
-                key={category.title}
-                variants={itemVariants}
-                className="glass rounded-lg p-6 hover:border-primary/50 transition-smooth group"
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mr-4 group-hover:bg-primary/20 transition-smooth">
-                    <Icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h3 className="text-xl font-semibold">{category.title}</h3>
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              variants={itemVariants}
+              className="glass rounded-xl p-6 hover:border-primary/50 transition-smooth group relative overflow-hidden"
+            >
+              {/* Gradient Background */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-smooth`} />
+              
+              <div className="relative z-10">
+                {/* Category Title */}
+                <div className="mb-6">
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-smooth flex items-center gap-2">
+                    <span className="w-1 h-6 bg-primary rounded-full"></span>
+                    {category.title}
+                  </h3>
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-3 py-1 bg-secondary/50 rounded-full text-sm text-foreground/90 hover:bg-primary/20 hover:text-primary transition-smooth cursor-default"
+
+                {/* Skills Grid */}
+                <div className="grid grid-cols-2 gap-3">
+                  {category.skills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
+                      className={`flex items-center gap-2 p-2.5 bg-secondary/30 hover:bg-secondary/50 rounded-lg transition-smooth group/skill cursor-default ${skill.color}`}
                     >
-                      {skill}
-                    </span>
+                      <div className="w-6 h-6 flex-shrink-0 group-hover/skill:scale-110 transition-transform">
+                        <img 
+                          src={skill.logo} 
+                          alt={skill.name}
+                          className={`w-full h-full object-contain ${skill.invert ? 'dark:invert' : ''}`}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                      <span className="text-xs font-medium text-foreground/90 group-hover/skill:text-foreground transition-smooth leading-tight">
+                        {skill.name}
+                      </span>
+                    </motion.div>
                   ))}
                 </div>
-              </motion.div>
-            );
-          })}
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Skills Summary Stats */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
+        >
+          {[
+            { label: 'Technologies', value: '35+' },
+            { label: 'Projects Built', value: '10+' },
+            { label: 'Architecture Patterns', value: '4+' },
+            { label: 'Years Learning', value: '2+' },
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.4, delay: 0.7 + index * 0.1 }}
+              className="glass rounded-lg p-4 text-center hover:border-primary/50 transition-smooth group"
+            >
+              <div className="text-2xl font-bold text-primary mb-1 group-hover:scale-110 transition-transform inline-block">
+                {stat.value}
+              </div>
+              <div className="text-sm text-muted-foreground">{stat.label}</div>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

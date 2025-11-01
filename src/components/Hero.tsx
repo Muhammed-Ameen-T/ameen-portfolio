@@ -33,9 +33,8 @@ const Hero = () => {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4"
             >
               Hi, I'm{' '}
-              <span className="gradient-text">Muhammed Ameen T</span>
+              <span className="gradient-text whitespace-nowrap">Muhammed Ameen T</span>
             </motion.h1>
-
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -76,14 +75,21 @@ const Hero = () => {
                 <Mail className="mr-2 h-5 w-5 group-hover:animate-float" />
                 Hire Me
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-primary text-primary hover:bg-primary/10"
+              <a
+                href="https://drive.google.com/file/d/1muwBLS-YA07zcimj4RPETOk1-0oKdQeV/view?usp=drive_link"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Download className="mr-2 h-5 w-5" />
-                Download CV
-              </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-primary text-primary hover:bg-primary/10"
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Download CV
+                </Button>
+              </a>
+
             </motion.div>
           </motion.div>
 
@@ -97,8 +103,12 @@ const Hero = () => {
             <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full blur-3xl animate-glow-pulse"></div>
               <div className="relative w-full h-full glass rounded-full p-2 animate-float">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-background border-2 border-primary/30 flex items-center justify-center">
-                  <div className="text-6xl sm:text-7xl lg:text-8xl font-bold gradient-text">MA</div>
+                <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-background border-2 border-primary/30 flex items-center justify-center overflow-hidden">
+                  <img
+                    src="/public/favicon.png"
+                    alt="Profile"
+                    className="w-full h-full object-cover rounded-full"
+                  />
                 </div>
               </div>
             </div>

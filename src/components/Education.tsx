@@ -1,39 +1,13 @@
+import { education } from '@/Data/Education';
 import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { GraduationCap, Award, BookOpen } from 'lucide-react';
 
 const Education = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
 
-  const education = [
-    {
-      icon: Award,
-      title: 'Full Stack Development',
-      institution: 'Brototype',
-      location: 'Calicut, Kerala, India',
-      period: 'Recent',
-      description: 'Intensive full-stack development program focusing on MERN stack',
-    },
-    {
-      icon: GraduationCap,
-      title: 'Bachelor of Computer Application',
-      institution: 'Indira Gandhi National Open University',
-      location: 'India',
-      period: 'In Progress',
-      description: 'Comprehensive computer science and application development curriculum',
-    },
-    {
-      icon: BookOpen,
-      title: 'Higher Secondary Education',
-      institution: 'Higher Secondary School',
-      location: 'Karuvanpoyil, Kerala, India',
-      period: 'Completed',
-      description: 'Foundation in science and mathematics',
-    },
-  ];
-
+  
   const itemVariants = {
     hidden: { opacity: 0, x: -30 },
     visible: {
@@ -100,7 +74,7 @@ const Education = () => {
             </div>
           </div>
 
-          {/* Future Work Experience */}
+          {/* Future Work Experience
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -114,7 +88,7 @@ const Education = () => {
               Seeking my first full-time role to apply MERN stack expertise and contribute to
               innovative projects in a collaborative team environment.
             </p>
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>
