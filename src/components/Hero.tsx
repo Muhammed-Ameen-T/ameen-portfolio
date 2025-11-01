@@ -105,7 +105,7 @@ const Hero = () => {
               <div className="relative w-full h-full glass rounded-full p-2 animate-float">
                 <div className="w-full h-full rounded-full bg-gradient-to-br from-primary/20 to-background border-2 border-primary/30 flex items-center justify-center overflow-hidden">
                   <img
-                    src="/public/favicon.png"
+                    src="https://res.cloudinary.com/djqsehax7/image/upload/v1761969218/SAVE_20251019_155600-removebg-preview_w8y8bc.png"
                     alt="Profile"
                     className="w-full h-full object-cover rounded-full"
                   />
